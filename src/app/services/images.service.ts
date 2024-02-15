@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { ImgurAlbum } from '../shared/models/Imgurmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class ImagesService {
       'Authorization': `Client-ID ${this.client_id}`
     });
 
-    return this.http.get<any[]>(`${this.apiUrl}${this.albumUrl}`, { headers })
+    return this.http.get<ImgurAlbum[]>(`${this.apiUrl}${this.albumUrl}`, { headers })
       .pipe(
         catchError(this.handleError)
       );

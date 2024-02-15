@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ImagesService } from 'src/app/services/images.service';
+import { ImgurAlbum } from 'src/app/shared/models/Imgurmodel';
 
 @Component({
   selector: 'app-list-albuns',
@@ -8,32 +10,27 @@ import { ImagesService } from 'src/app/services/images.service';
 })
 export class ListAlbunsComponent implements OnInit {
 
-  albuns: any[];
+  albums: ImgurAlbum[];
 
-  constructor(private imagesService: ImagesService) { }
+  constructor(private imagesService: ImagesService, private route: Router) { }
 
   ngOnInit(): void {
     this.carregarAlbuns();
-    // this.imagesService.generateAccessTokenPOST().subscribe(
-    //   data => {
-    //    console.log("data", data);
-
-    //   },
-    // )
   }
 
   carregarAlbuns() {
-
     this.imagesService.listarAlbuns().subscribe(
       (response) => {
-        console.log("response", response);
-
-        this.albuns = response;
+        this.albums = response;
       },
       (error) => {
         console.error('Erro ao carregar os álbuns:', error);
       }
     );
+  }
+
+  showImages(id: string){
+    this.route.navigate(['album/images/list-images', id]);
   }
 
 
