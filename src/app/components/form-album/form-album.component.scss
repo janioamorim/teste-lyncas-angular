@@ -1,0 +1,22 @@
+.title-toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-album{
+  margin: 15px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  mat-form-field{
+    margin-bottom: 15px;
+  }
+  .buttons-footer{
+    display: flex;
+    justify-content: flex-end;
+
+    button + button{
+      margin-left: 10px;
+    }
+  }
+}

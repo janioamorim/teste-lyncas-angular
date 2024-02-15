@@ -1,0 +1,42 @@
+<mat-toolbar class="title-toolbar">
+  <span>Seus Albuns</span>
+  <button mat-fab extended color="primary" [routerLink]="['/album/form-album']">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="main-div">
+  <mat-card class="card-album">
+    <mat-card-header>
+      <mat-card-title>Viagem Dubai</mat-card-title>
+    </mat-card-header>
+    <div class="img-album-icon">
+      <mat-icon>photo_library</mat-icon>
+    </div>
+    <mat-card-content>
+      <p>
+        Aqui vai uma descrição breve do album.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Ver Fotos</button>
+      <button mat-button>Excluir album</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="card-album">
+    <mat-card-header>
+      <mat-card-title>Férias 2022</mat-card-title>
+    </mat-card-header>
+    <div class="img-album-icon">
+      <mat-icon>photo_library</mat-icon>
+    </div>
+    <mat-card-content>
+      <p>
+        Aqui vai uma descrição breve do album.
+      </p>
+    </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Ver Fotos</button>
+        <button mat-button>Excluir album</button>
+      </mat-card-actions>
+  </mat-card>
+</div>

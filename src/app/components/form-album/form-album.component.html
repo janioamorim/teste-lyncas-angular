@@ -1,0 +1,22 @@
+<mat-toolbar class="title-toolbar">
+  <span>Novo Álbum</span>
+  <button mat-fab extended color="primary" [routerLink]="['/album/list-albuns']" >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="main-div">
+  <form class="form-album">
+    <mat-form-field class="example-full-width">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput placeholder=""></textarea>
+    </mat-form-field>
+    <div class="buttons-footer">
+      <button mat-flat-button color="accent">Cancelar</button>
+      <button mat-raised-button color="primary">Salvar</button>
+    </div>
+  </form>
+</div>
