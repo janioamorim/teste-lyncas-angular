@@ -17,26 +17,55 @@ export class ImagesService {
 
   constructor(private http: HttpClient) { }
 
+  headerAuth = new HttpHeaders({
+    'Authorization': `Bearer ${this.token}`
+  });
+
   listarAlbuns(): Observable<any[]> {
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${this.token}`,
-    //   'Accept': '*/*',
-    //   'Content-Type': 'application/json',
-    //   'Origin': 'http://localhost:4200'
-    // });
     const headers = new HttpHeaders({
       'Authorization': `Client-ID ${this.client_id}`
     });
 
-    return this.http.get<ImgurAlbum[]>(`${this.apiUrl}${this.albumUrl}`, { headers })
+    return this.http.get<ImgurAlbum[]>(`${this.apiUrl}${this.albumUrl}`, { headers: this.headerAuth })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  private handleError(error: HttpErrorResponse): Observable<any> {
-    console.error('Ocorreu um erro:', error);
+  addImageToAlbum(albumDeleteHash: string, imageHashes: string[]): Observable<any> {
+    const formData = new FormData();
+    imageHashes.forEach(deleteHash => {
+      formData.append('deletehashes[]', deleteHash);
+    });
+
+    return this.http.post<any>(`${this.apiUrl}album/${albumDeleteHash}/add`, formData, { headers: this.headerAuth })
+    .pipe(
+      catchError(this.handleError)
+      );
+    }
+
+    private handleError(error: HttpErrorResponse): Observable<any> {
+      console.error('Ocorreu um erro:', error);
     return throwError('Erro na requisição. Por favor, tente novamente mais tarde.');
+  }
+
+  uploadImage(file: File): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Client-ID ${this.client_id}`
+    });
+    const formData = new FormData();
+    formData.append('image', file);
+    return this.http.post<any[]>(`${this.apiUrl}upload`, formData, { headers: this.headerAuth })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  imagesByAlbum(idAlbum: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}album/${idAlbum}/images`, { headers: this.headerAuth })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
 }

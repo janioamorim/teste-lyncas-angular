@@ -1,0 +1,53 @@
+.title-toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-album{
+  margin: 15px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  mat-form-field{
+    margin-bottom: 15px;
+  }
+  .buttons-footer{
+    display: flex;
+    justify-content: flex-end;
+
+    button + button{
+      margin-left: 10px;
+    }
+  }
+}
+
+
+.custom-file-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.input-file {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-file-label {
+  display: inline-block;
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.input-file-label:hover {
+  background-color: #303f9f;
+}

@@ -10,7 +10,7 @@ import { ImgurAlbum } from 'src/app/shared/models/Imgurmodel';
 })
 export class ListAlbunsComponent implements OnInit {
 
-  albums: ImgurAlbum[];
+  albums: ImgurAlbum[] = new Array();
 
   constructor(private imagesService: ImagesService, private route: Router) { }
 
@@ -20,8 +20,10 @@ export class ListAlbunsComponent implements OnInit {
 
   carregarAlbuns() {
     this.imagesService.listarAlbuns().subscribe(
-      (response) => {
-        this.albums = response;
+      (response: any) => {
+        console.log("response", response);
+
+        this.albums = response.data;
       },
       (error) => {
         console.error('Erro ao carregar os álbuns:', error);
@@ -29,8 +31,8 @@ export class ListAlbunsComponent implements OnInit {
     );
   }
 
-  showImages(id: string){
-    this.route.navigate(['album/images/list-images', id]);
+  showImages(hasgAlbum: string, idAlbum: string){
+    this.route.navigate([`album/${idAlbum}/images/list-images`, hasgAlbum]);
   }
 
 

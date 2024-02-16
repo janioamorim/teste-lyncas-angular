@@ -1,0 +1,21 @@
+<mat-toolbar class="title-toolbar">
+  <span>Novo Imagem</span>
+  <button mat-fab extended color="primary" [routerLink]="['/album/list-albuns']" >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="main-div">
+  <form class="form-album" (ngSubmit)="sendImageApi()" [formGroup]="formNewImage">
+    <div class="input-file">
+      <label class="input-file-label">
+        Selecionar imagens
+        <input type="file" formControlName="file" class="custom-file-input" (change)="onFileSelected($event)" #fileInput accept="image/*">
+      </label>
+      <span class="file-name">{{ selectedFileName }}</span>
+    </div>
+    <div class="buttons-footer">
+      <button mat-flat-button color="accent">Cancelar</button>
+      <button type="submit" mat-raised-button color="primary">Salvar</button>
+    </div>
+  </form>
+</div>

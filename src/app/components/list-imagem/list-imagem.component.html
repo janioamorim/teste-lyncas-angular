@@ -1,36 +1,26 @@
-<!-- <<mat-sidenav-container
-  class="sidenav-container"
-  (backdropClick)="closeSideNav()">
-  <mat-sidenav #sidenav class="sidenav" fixedInViewport="true">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list (click)="closeSideNav()">
-      <a mat-list-item [routerLink]="['/album/list-imagem']"><mat-icon>photo_library</mat-icon> Albuns</a>
-      <mat-divider></mat-divider>
-      <a mat-list-item [routerLink]="['/album/form-album']"
-        ><mat-icon>add</mat-icon> Novo Album</a
-      >
-      <mat-divider></mat-divider>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" class="header-toolbar">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="openSideNav()"
-      >
-        <mat-icon aria-label="Side nav toggle icon"> menu</mat-icon>
-      </button>
-      <span>Gerenciador de Imagens</span>
+<mat-toolbar class="title-toolbar">
+  <span>Fotos do Álbum</span>
+  <button mat-fab extended color="primary" (click)="showFormImage()">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="main-div">
 
-    </mat-toolbar>
-    <div class="app-content">
-      <router-outlet></router-outlet>
-    </div>
+  <mat-card class="card-album" *ngFor="let image of images">
+    <mat-card-header>
+      <mat-card-title>{{image?.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="">
+        <a href="{{image.link}}" target="_blank">
+          <img src="{{image.link}}" alt="Imagem do álbum">
+        </a>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="showImages(album.id)">Ver Fotos</button>
+      <button mat-button>Excluir album</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
 
-  </mat-sidenav-content>
-
-  </mat-sidenav-container> -->
-
-  <h1>teste</h1>

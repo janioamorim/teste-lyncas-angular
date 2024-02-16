@@ -6,9 +6,9 @@
 </mat-toolbar>
 <div class="main-div">
 
-  <mat-card class="card-album" *ngFor="let album of albums | async" routerLinkActive="active">
+  <mat-card class="card-album" *ngFor="let album of albums">
     <mat-card-header>
-      <mat-card-title>{{title.title}}</mat-card-title>
+      <mat-card-title>{{album.title}}</mat-card-title>
     </mat-card-header>
     <div class="img-album-icon">
       <mat-icon>photo_library</mat-icon>
@@ -19,9 +19,8 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="showImages(album.id)">Ver Fotos</button>
+      <button mat-button (click)="showImages(album.deletehash, album.id)">Ver Fotos</button>
       <button mat-button>Excluir album</button>
     </mat-card-actions>
   </mat-card>
-
 </div>
