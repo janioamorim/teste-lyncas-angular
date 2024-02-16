@@ -4,7 +4,7 @@ Bem-vindo ao Meu Projeto Angular version 11.1.2!
 
 ## Visão Geral
 
-Este projeto é uma aplicação Angular que consumo a API externa [imgur] (https://api.imgur.com/) para realizar upload de imagens e listagem.
+Este projeto é uma aplicação Angular que consumo a API externa [imgur](https://api.imgur.com/) para realizar upload de imagens e listagem.
 
 ## Live Demo
 
@@ -47,5 +47,5 @@ npm run start
 
 ## OBS
 
-Inicie no endereço [127.0.0.1:4200](http://127.0.0.1:4200/)
+Inicie no endereço [127.0.0.1:4200](http://127.0.0.1:4200/).
 Devido as restrições da API, as imagens não serão mostradas localmente.

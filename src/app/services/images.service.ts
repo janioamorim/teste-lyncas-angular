@@ -29,10 +29,6 @@ export class ImagesService {
   });
 
   listarAlbuns(): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Authorization': `Client-ID ${this.client_id}`
-    });
-
     return this.http.get<ImgurAlbum[]>(`${this.apiUrl}${this.albumUrl}`, { headers: this.headerAuth })
       .pipe(
         catchError(this.handleError)
@@ -57,9 +53,6 @@ export class ImagesService {
   }
 
   uploadImage(file: File, title: string): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Authorization': `Client-ID ${this.client_id}`
-    });
     const formData = new FormData();
     formData.append('image', file);
     formData.append('title', title);
@@ -77,9 +70,6 @@ export class ImagesService {
   }
 
   deleteAlbum(albumHash: string): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Authorization': `Client-ID ${this.client_id}`
-    });
     return this.http.delete<any[]>(`${this.apiUrl}album/${albumHash}`, { headers: this.headerAuth })
       .pipe(
         catchError(this.handleError)

@@ -1,3 +1,9 @@
+$margin: 10px;
+$padding: 20px;
+$icon-size: 70px;
+$min-height: 225px;
+
+
 .title-toolbar{
   display: flex;
   justify-content: space-between;
@@ -27,3 +33,60 @@
   margin-top: 20px;
   text-align: center;
 }
+.link-image{
+  img{
+    height: 150px;
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+  .main-div, .main-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .card-album {
+    flex: 1 1 25%;
+    max-width: calc(17% - #{$margin * 2});
+    min-height: $min-height;
+  }
+}
+
+@media only screen and (max-width: 1350px) {
+  .card-album {
+    max-width: calc(22% - #{$margin * 2});
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .main-div {
+    justify-content: flex-start;
+  }
+  .card-album {
+    max-width: calc(33.33% - #{$margin * 2});
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .card-album {
+    flex: 1 1 33.33%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-album {
+    flex: 1 1 50%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .main-div {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .card-album {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
