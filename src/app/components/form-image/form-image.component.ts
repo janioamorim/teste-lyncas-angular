@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ImagesService } from 'src/app/services/images.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-form-image',
@@ -19,7 +20,8 @@ export class FormImageComponent implements OnInit {
   constructor(
     private imagesService: ImagesService,
     private fb: FormBuilder,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private location: Location,) {
 
   }
 
@@ -29,6 +31,7 @@ export class FormImageComponent implements OnInit {
     });
     this.formNewImage = this.fb.group({
       file: [''],
+      title: ['',[Validators.required]],
     })
   }
 
@@ -38,10 +41,10 @@ export class FormImageComponent implements OnInit {
   }
 
   sendImageApi(){
-    this.imagesService.uploadImage(this.file)
+    let title = this.formNewImage.controls.title.value
+    this.imagesService.uploadImage(this.file, title)
         .subscribe(
           (response: any) => {
-            console.log('Imagem adicionada com sucesso:', response);
             this.addImagetoAlbum([response.data.deletehash])
           },
           error => {
@@ -53,13 +56,17 @@ export class FormImageComponent implements OnInit {
   addImagetoAlbum(deletehash: string[]) {
       this.imagesService.addImageToAlbum(this.hasgAlbum, deletehash)
         .subscribe(
-          response => {
-            console.log('Imagem adicionada com sucesso:', response);
+          () => {
+            this.goBack();
           },
           error => {
             console.error('Erro ao adicionar imagem ao álbum:', error);
           }
         );
+    }
+
+    goBack(): void {
+      this.location.back();
     }
   }
 

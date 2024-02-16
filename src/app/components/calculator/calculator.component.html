@@ -1,0 +1,27 @@
+<mat-toolbar class="title-toolbar">
+  <mat-label>Calculadora</mat-label>
+</mat-toolbar>
+
+<div class="main-div">
+  <mat-form-field>
+    <mat-label>Digite um número múltiplo de 10 entre 100 e 1000:</mat-label>
+    <input matInput type="text" [(ngModel)]="userInput" (change)="calculateArray()">
+  </mat-form-field>
+</div>
+
+<mat-chip-list *ngIf="showArray" class="array-result">
+  <mat-chip color="primary" *ngFor="let value of calculatedArray">{{ roundValue(value) }}</mat-chip>
+</mat-chip-list>
+
+<div *ngIf="showSum" class="sum-result">
+  <p>Escolha o que deseja somar:</p>
+  <mat-radio-group [(ngModel)]="sumType">
+    <mat-radio-button value="odd">Posições Ímpares</mat-radio-button>
+    <mat-radio-button value="even">Posições Pares</mat-radio-button>
+  </mat-radio-group>
+  <button mat-raised-button color="primary" (click)="calculateSum()">Calcular Soma</button>
+</div>
+
+<div *ngIf="showResult" class="result-box">
+  <h2>Resultado da Somatória: {{ sumResult}}</h2>
+</div>

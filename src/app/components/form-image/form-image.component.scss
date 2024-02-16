@@ -36,6 +36,8 @@
   position: relative;
   width: 100%;
   margin-bottom: 20px;
+  border: 1px solid;
+  padding: 10px 0;
 }
 
 .input-file-label {
@@ -51,3 +53,4 @@
 .input-file-label:hover {
   background-color: #303f9f;
 }
+

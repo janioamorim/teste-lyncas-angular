@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ImgurAlbum } from '../shared/models/Imgurmodel';
 
@@ -14,8 +14,15 @@ export class ImagesService {
   private token = 'fbbbf44bb199f376785d3e770c5b8e99bbbaa4a6';
   private client_id = 'ce342ced9f5716a';
 
+  private titleAlbumSource = new BehaviorSubject<string>('');
+  titleAlbum = this.titleAlbumSource.asObservable();
+
 
   constructor(private http: HttpClient) { }
+
+  setTitleAlbum(title: string) {
+    this.titleAlbumSource.next(title);
+  }
 
   headerAuth = new HttpHeaders({
     'Authorization': `Bearer ${this.token}`
@@ -49,12 +56,13 @@ export class ImagesService {
     return throwError('Erro na requisição. Por favor, tente novamente mais tarde.');
   }
 
-  uploadImage(file: File): Observable<any[]> {
+  uploadImage(file: File, title: string): Observable<any[]> {
     const headers = new HttpHeaders({
       'Authorization': `Client-ID ${this.client_id}`
     });
     const formData = new FormData();
     formData.append('image', file);
+    formData.append('title', title);
     return this.http.post<any[]>(`${this.apiUrl}upload`, formData, { headers: this.headerAuth })
       .pipe(
         catchError(this.handleError)
@@ -67,5 +75,33 @@ export class ImagesService {
         catchError(this.handleError)
       );
   }
+
+  deleteAlbum(albumHash: string): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Client-ID ${this.client_id}`
+    });
+    return this.http.delete<any[]>(`${this.apiUrl}album/${albumHash}`, { headers: this.headerAuth })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  addAlbum(title: string, description: string): Observable<any[]> {
+    const formData = new FormData();
+    formData.append('title', title );
+    formData.append('description', description );
+    return this.http.post<any[]>(`${this.apiUrl}album`, formData, { headers: this.headerAuth })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteImage(imageDeleteHash: string): Observable<any[]> {
+    return this.http.delete<any[]>(`${this.apiUrl}image/${imageDeleteHash}`, { headers: this.headerAuth })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 
 }

@@ -1,0 +1,42 @@
+.main-div{
+  mat-form-field{
+    margin: 20px 0;
+    width: 30%;
+  }
+}
+.array-result{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 2px;
+  background-color: #474747;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 24px 0px;
+
+}
+.sum-result{
+  display: flex;
+  flex-direction: column;
+  font-size: 2em;
+  justify-content: center;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 24px 0px;
+  mat-radio-group{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    mat-radio-button{
+      margin: 10px 0;
+    }
+  }
+  button{
+    width: 20%;
+  }
+}
+.result-box{
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  font-size: 25px;
+}

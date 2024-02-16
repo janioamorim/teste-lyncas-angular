@@ -5,18 +5,24 @@
   </button>
 </mat-toolbar>
 <div class="main-div">
-  <form class="form-album">
-    <mat-form-field class="example-full-width">
-      <mat-label>Título</mat-label>
-      <input matInput placeholder="" value="">
+  <form class="form-album" (ngSubmit)="saveNewAlbum()" [formGroup]="formNewAlbum">
+    <mat-form-field>
+      <mat-label>Título do álbum</mat-label>
+      <input formControlName="title" matInput placeholder="" value="">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Descrição</mat-label>
-      <textarea matInput placeholder=""></textarea>
+      <textarea
+        formControlName="description"
+        [disabled]="formNewAlbum.invalid || !formNewAlbum.get('description').value"
+        matInput placeholder=""></textarea>
     </mat-form-field>
     <div class="buttons-footer">
-      <button mat-flat-button color="accent">Cancelar</button>
-      <button mat-raised-button color="primary">Salvar</button>
+      <button
+        type="submit"
+        [disabled]="formNewAlbum.invalid || !formNewAlbum.get('title').value"
+        mat-raised-button
+        color="primary">Salvar</button>
     </div>
   </form>
 </div>

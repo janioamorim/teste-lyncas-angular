@@ -1,26 +1,42 @@
 <mat-toolbar class="title-toolbar">
-  <span>Fotos do Álbum</span>
-  <button mat-fab extended color="primary" (click)="showFormImage()">
-    <mat-icon>add</mat-icon>
-  </button>
+  <span>Fotos do Álbum {{titleAlbum}}</span>
+  <div>
+    <button mat-fab extended color="accent" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button mat-fab extended color="primary" (click)="showFormImage()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 <div class="main-div">
-
-  <mat-card class="card-album" *ngFor="let image of images">
-    <mat-card-header>
-      <mat-card-title>{{image?.title}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="">
-        <a href="{{image.link}}" target="_blank">
-          <img src="{{image.link}}" alt="Imagem do álbum">
-        </a>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="showImages(album.id)">Ver Fotos</button>
-      <button mat-button>Excluir album</button>
-    </mat-card-actions>
-  </mat-card>
+  <ng-container *ngIf="images.length > 0; else noData">
+    <mat-card class="card-album" *ngFor="let image of images; else noData">
+      <mat-card-header>
+        <mat-card-title>{{image?.title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="img-album-icon">
+          <!-- <a href="{{image.link}}" target="_blank">
+            <mat-icon>image</mat-icon>
+          </a> -->
+          <a target="_blank" href="{{image.link}}">
+            <img alt="Imagem do álbum" src="{{image.link}}" height="200px" width="250px"/>
+          </a>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="showImage(image.link)">Ver Foto</button>
+        <button mat-button (click)="openSnackBar(image.deletehash)">Excluir Foto</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+  <ng-template #noData>
+    <mat-card class="card-nodata">
+      <mat-card-content>
+        <mat-label>Não existe nenhuma foto neste álbum</mat-label>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
 </div>
 

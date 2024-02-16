@@ -1,20 +1,77 @@
-.title-toolbar{
+$margin: 10px;
+$padding: 20px;
+$icon-size: 70px;
+$min-height: 225px;
+
+.title-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.card-album{
-  margin: 10px;
-}
-.img-album-icon{
-  display: flex;
-  height: 120px;
-  justify-content: center;
-  align-items: center;
-  mat-icon{
-    height: 70px;
-    width: 70px;
-    font-size: 70px;
+
+.card-album {
+  margin: $margin;
+  flex: 1 1 20%;
+  max-width: calc(25% - #{$margin * 2});
+  min-height: $min-height;
+
+
+  .img-album-icon {
+    margin: $padding;
+    text-align: center;
   }
 
+
+  .mat-icon {
+    height: $icon-size;
+    width: $icon-size;
+    font-size: $icon-size;
+  }
+}
+
+.card-nodata {
+  width: 100%;
+  margin-top: $margin * 2;
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 2000px) {
+  .main-div, .main-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .card-album {
+    flex: 1 1 25%;
+    max-width: calc(17% - #{$margin * 2});
+    min-height: $min-height;
+  }
+}
+
+@media only screen and (max-width: 1350px) {
+  .card-album {
+    max-width: calc(22% - #{$margin * 2});
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .main-div {
+    justify-content: space-between;
+  }
+  .card-album {
+    max-width: calc(33.33% - #{$margin * 2});
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .card-album {
+    flex: 1 1 33.33%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-album {
+    flex: 1 1 50%;
+  }
 }

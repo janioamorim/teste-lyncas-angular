@@ -6,6 +6,10 @@
 </mat-toolbar>
 <div class="main-div">
   <form class="form-album" (ngSubmit)="sendImageApi()" [formGroup]="formNewImage">
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input formControlName="title" matInput placeholder="" value="">
+    </mat-form-field>
     <div class="input-file">
       <label class="input-file-label">
         Selecionar imagens
@@ -14,8 +18,11 @@
       <span class="file-name">{{ selectedFileName }}</span>
     </div>
     <div class="buttons-footer">
-      <button mat-flat-button color="accent">Cancelar</button>
-      <button type="submit" mat-raised-button color="primary">Salvar</button>
+      <button
+        type="submit"
+        [disabled]="formNewImage.invalid || !formNewImage.get('title').value || !formNewImage.get('file').value"
+        mat-raised-button
+        color="primary">Salvar</button>
     </div>
   </form>
 </div>

@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'album/form-album', loadChildren: () => import('./components/form-album/form-album.module').then(m => m.FormAlbumModule) },
   { path: 'album/:idAlbum/images/list-images/:hasgAlbum', loadChildren: () => import('./components/list-imagem/list-imagem.module').then(m => m.ListImagemModule) },
   { path: 'album/:hashAlbum/images/form-images', loadChildren: () => import('./components/form-image/form-image.module').then(m => m.FormImageModule) },
+  { path: 'calculator', loadChildren: () => import('./components/calculator/calculator.module').then(m => m.CalculatorModule) },
 ];
 
 @NgModule({
